@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -210,6 +211,10 @@
     <Compile Include="Migrations\201609210536220_PopulateGenre.Designer.cs">
       <DependentUpon>201609210536220_PopulateGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609260336531_ChangeInMovieTables.cs" />
+    <Compile Include="Migrations\201609260336531_ChangeInMovieTables.Designer.cs">
+      <DependentUpon>201609260336531_ChangeInMovieTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -217,6 +222,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -333,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609210536220_PopulateGenre.resx">
       <DependentUpon>201609210536220_PopulateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609260336531_ChangeInMovieTables.resx">
+      <DependentUpon>201609260336531_ChangeInMovieTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
