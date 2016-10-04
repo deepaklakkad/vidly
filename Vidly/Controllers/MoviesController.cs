@@ -10,7 +10,7 @@ using Vidly.ViewModels;
 namespace Vidly.Controllers
 {
     public class MoviesController : Controller
-    {
+    {   
         ApplicationDbContext _context;
 
         public MoviesController()
@@ -23,6 +23,7 @@ namespace Vidly.Controllers
             _context.Dispose();
         }
 
+        [Authorize(Roles = RoleName.CanManageMovie)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
@@ -85,9 +86,11 @@ namespace Vidly.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
-            
-            return View(movies);
+            if(User.IsInRole(RoleName.CanManageMovie))
+                return View("List");
+
+            return View("ReadOnlyList");
+
         }
 
         // GET: Movies/Detail/1
@@ -99,28 +102,6 @@ namespace Vidly.Controllers
                 return HttpNotFound();
 
             return View(movie);
-        }
-
-        // GET: Movies/Random
-        public ActionResult Random()
-        {
-            var movie = new Movie
-            {
-                Name = "Shrek!"
-            };
-
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "Customer 1" },
-                new Customer { Name = "Customer 2" }
-            };
-
-            var viewModel = new RandomMoiveViewModel { 
-                Movie= movie,
-                Customers = customers
-            };
-
-            return View(viewModel); 
         }
     }
 }
